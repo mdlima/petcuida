@@ -15,7 +15,7 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem   'sass-rails',   '3.2.5'
+  gem   'sass-rails', '3.2.5'
   gem 'coffee-rails', '3.2.2'
   gem     'uglifier', '1.2.3'
   
@@ -23,12 +23,12 @@ group :assets do
 end
 
 gem 'jquery-rails', '2.1.3'
-gem 'haml', '3.1.6'
+gem         'haml', '3.1.6'
 
 group :test do
   gem 'rb-fsevent', '0.9.1', :require => false
-  # gem 'growl', '1.0.3'
-  gem 'terminal-notifier-guard'
+  # gem 'growl', '1.0.3' # Replaced by terminal-notifier-guard
+  gem 'terminal-notifier-guard', '1.5.3' # Notifications on Mac OS X Mountain Lion Notification Center
 
   gem          'launchy', '2.1.2'
   gem         'capybara', '1.1.2'
