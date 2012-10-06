@@ -37,8 +37,6 @@ group :test do
   gem 'database_cleaner', '0.8.0'
 end
 
-# gem 'pg', '0.12.2'
-
 gem 'bootstrap-sass', '2.1.0.0'
 gem        'hominid', '3.0.5'
 gem         'devise', '2.1.2'
@@ -48,3 +46,7 @@ gem    'simple_form', '2.0.3'
 gem 'google_visualr', '2.1.3'
 
 gem 'jquery-datatables-rails', '1.11.1'
+
+# Heroku deploy recommended
+# gem 'thin'
+# gem 'pg'
