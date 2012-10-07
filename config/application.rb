@@ -74,5 +74,8 @@ module Petcuida
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Recommended for Heroku deployment, partially load the application
+    config.assets.initialize_on_precompile = false
   end
 end
