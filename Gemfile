@@ -50,4 +50,4 @@ gem 'jquery-datatables-rails', '1.11.1'
 
 # Recommended for Heroku deployment
 gem 'thin'
-# gem 'pg'
+gem 'pg'
