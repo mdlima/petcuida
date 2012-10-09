@@ -1,4 +1,6 @@
-= link_to "Petcuida", root_path, :class => 'brand'
+= link_to root_path, :class => 'brand', :id => 'toplogo' do
+  %span.green Pet
+  %span.yellow Cuida
 %ul.nav
   - if user_signed_in?
     %li
