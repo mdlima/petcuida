@@ -20,7 +20,6 @@
     %title= content_for?(:title) ? yield(:title) : "Pet Cuida"
     
     = stylesheet_link_tag    "application", :media => "all"
-    = javascript_include_tag "application"
     /[if lt IE 9]
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     = csrf_meta_tags
@@ -33,6 +32,7 @@
       %nav.navbar-inner
         .container
           = render 'layouts/navigation'
+
     #main{:role => "main"}
       .container
         .content
@@ -40,6 +40,10 @@
             .span12
               = render 'layouts/messages'
               = yield
-          %footer
       / ! end of .container
     / ! end of #main
+    %footer.footer
+      %hr{:style => "margin-bottom: 10px;"}/
+      = render 'layouts/footer'
+
+    = javascript_include_tag "application"
