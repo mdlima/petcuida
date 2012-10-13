@@ -1,16 +1,52 @@
+// Global defines
+
+// Pet Cuida Pallete
+$petOrange:  #d50;
+$petGold:    #f80;
+$petYellow:  #ec0;
+$petLime:    #8a0;
+$petGreen:   #562;
+$petGray:    #666;
+
+
+// Bootstrap overrides
+
+/*$bodyBackground:  #963;*/
+$linkColor:         $petGreen;
+/*$textColor:         $petGray;*/
+
+$baseFontSize:          14px;
+$baseFontFamily:        "Cabin", sans-serif, Arial;
+$baseLineHeight:        23px;
+
+
+// Bootstrap
 @import "bootstrap";
 
-$pet-green: #360;
-$pet-yellow: #fc0;
-
-body { padding-top: 60px; }
+body {
+  padding-top: 60px;
+  background-image: image-url("background.svg");
+  background-repeat: no-repeat;
+  background-position: 100% 0%;
+  background-size: contain;
+  
+}
 
 #toplogo {
   font-family: 'Lato', sans-serif;
   font-size: 24px;
   font-weight: 400;
-  .green { color: $pet-green; }
-  .yellow { color: $pet-yellow; }
+  .green { color: $petGreen; }
+  .yellow { color: $petYellow; }
 }
 
+.center-text {
+	text-align: center;
+}
+
+.white-text {
+	color: $white;
+}
+
+// Add responsive behavior
 @import "bootstrap-responsive";
