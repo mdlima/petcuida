@@ -1,18 +1,31 @@
+# encoding: utf-8
+
 Feature: Request Invitation
   As a visitor to the website
-  I want to request an invitation 
+  I want to request an invitation
   so I can be notified when the site is launched
 
   Background:
     Given I am not logged in
 
-  Scenario: User views home page
+  Scenario: Owner views home page
     When I visit the home page
-    Then I should see a button "Request Invitation"
+    Then I should see a button "Sou Proprietário"
 
-  Scenario: User views invitation request form
+@javascript
+  Scenario: Owner views invitation request form
     When I visit the home page
-    And I click a button "Request Invitation"
+    And I click a button "Sou Proprietário"
+    Then I should see a form with a field "Email"
+    
+  Scenario: Vet views home page
+    When I visit the home page
+    Then I should see a button "Sou Veterinário"
+
+@javascript
+  Scenario: Vet views invitation request form
+    When I visit the home page
+    And I click a button "Sou Veterinário"
     Then I should see a form with a field "Email"
 
   Scenario: User signs up with valid data

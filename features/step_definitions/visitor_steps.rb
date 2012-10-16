@@ -6,7 +6,7 @@ end
 def invitation_request user
   visit '/users/sign_up'
   fill_in "Email", :with => user[:email]
-  click_button "Request Invitation"
+  click_button "Cadastrar"
 end
 
 When /^I visit the home page$/ do
@@ -18,7 +18,7 @@ Then /^I should see a button "([^\"]*)"$/ do |arg1|
 end
 
 When /^I click a button "([^"]*)"$/ do |arg1|
-  click_button (arg1)
+  click_on (arg1)
 end
 
 Then /^I should see a form with a field "([^"]*)"$/ do |arg1|
