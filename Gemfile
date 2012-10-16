@@ -32,11 +32,13 @@ end
 
 group :development, :test do
   # gem     'sqlite3', '1.3.6'
-  gem 'rspec-rails', '2.11.0'
-  gem 'guard-rspec', '1.2.1'
-  gem 'guard-spork', '1.2.0'
-  gem       'spork', '0.9.2'
+  gem    'rspec-rails', '2.11.0'
+  gem    'guard-rspec', '1.2.1'
+  gem 'guard-cucumber', '1.2.0'
+  gem    'guard-spork', '1.2.0'
+  gem          'spork', '0.9.2'
 
+  gem    'capybara-webkit', '0.12.1'
   gem 'factory_girl_rails', '4.1.0'
   gem      'letter_opener', '1.0.0'
 end
