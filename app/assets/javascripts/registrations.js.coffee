@@ -22,9 +22,14 @@ $(document).ready ->
 
   $('#btn-owner').live 'click', ->
     $('form #user_type').val('Owner')
+    $('span#modal-title-user-type').text('Proprietário')
+    $('form #invitation_button').removeClass('btn-warning').addClass('btn-success')
+    false
 
   $('#btn-vet').live 'click', ->
     $('form #user_type').val('Vet')
+    $('span#modal-title-user-type').text('Veterinário')
+    $('form #invitation_button').removeClass('btn-success').addClass('btn-warning')
 
 
 # // load social sharing scripts if the page includes a Twitter "share" button
