@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 Feature: Request Invitation
   As a visitor to the website
   I want to request an invitation
