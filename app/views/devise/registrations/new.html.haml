@@ -3,10 +3,14 @@
     .modal-header
       %a.close{"data-dismiss" => "modal"} ×
       %h3#modal-title
-        Cadastro de Proprietário
+        - if @user.type == 'Vet'
+          Cadastro de Veterinário
+        - else
+          Cadastro de Proprietário
     .modal-body
       = f.error_notification
       = f.input :email, :placeholder => 'email@exemplo.com.br', :autocapitalize => "off", :autocorrect => "off"
+      = f.input :type, :as => :hidden
     .modal-footer
       %a.btn{:class => "btn", "data-dismiss" => "modal", :href => "#"} Fechar
       = f.submit "Cadastrar", :class => "btn btn-success", :id => 'invitation_button'
@@ -21,5 +25,5 @@
     %p Se você ama o seu pet e quer encontrar o melhor veterinário para ele, cadastre o seu email abaixo e ficará sabendo sobre o lançamento dos nossos serviços.
     %br/
 
-    %button.btn.btn-primary.btn-large#btn-owner{"data-toggle" => "modal", :href => "#request-invite"} Quero me cadastrar
-
+    %button.btn.btn-primary.btn-large#btn-owner{"data-toggle" => "modal", :href => "#request-invite"} Sou Proprietário
+    %button.btn.btn-warning.btn-large#btn-vet{"data-toggle" => "modal", :href => "#request-invite"} Sou Veterinário
