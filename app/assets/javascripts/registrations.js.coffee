@@ -2,12 +2,9 @@
 $(document).ready ->
   # // use AJAX to submit the "request invitation" form
   $('#invitation_button').live 'click', ->
-    email = $('form #user_email').val()
-    if($('form #user_opt_in').is(':checked'))
-        opt_in = true
-    else
-        opt_in = false
-    type = $('form #user_type').val()
+    email  = $('form #user_email').val()
+    opt_in = $('form #user_opt_in').val()
+    type   = $('form #user_type').val()
     dataString = 'user[email]='+ email + '&user[opt_in]=' + opt_in + '&user[type]=' + type
 
     $.ajax(
