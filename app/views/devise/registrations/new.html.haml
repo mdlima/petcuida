@@ -11,15 +11,18 @@
             Proprietário
     .modal-body
       = f.error_notification
-      = f.input :email, :placeholder => 'email@exemplo.com.br', :autocapitalize => "off", :autocorrect => "off"
+      = f.input :email, :placeholder => "email@exemplo.com.br", :autocapitalize => "off", :autocorrect => "off"
+      = f.input :opt_in, :as => :hidden, :input_html => { :value => "true" }
       = f.input :type, :as => :hidden
     .modal-footer
       %a.btn{:class => "btn", "data-dismiss" => "modal", :href => "#"} Fechar
       = f.submit "Cadastrar", :class => "btn btn-success", :id => 'invitation_button'
+      %br/
+      %small * Você confirma que aceita receber e-mails da Pet Cuida.
 
 - if !request.xhr? # No need to render the rest of the page for the AJAX response
   .hero-unit.hero-registration
-    / %h2 Pet Cuida
+    -# %h2 Pet Cuida
     %h2 Quem ama o seu pet, cuida.
   
     %p A Pet Cuida é um novo serviço que vai ajudar os proprietários que buscam o melhor atendimento para os seus pets a encontrarem os melhores veterinários.
