@@ -54,3 +54,7 @@ group :test do
   gem   'cucumber-rails', '1.3.0', :require => false
   gem 'database_cleaner', '0.8.0'
 end
+
+group :production do
+  gem 'newrelic_rpm'
+end
