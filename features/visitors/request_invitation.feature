@@ -21,7 +21,7 @@ Feature: Request Invitation
   Scenario: Owner signs up with valid data
     Given I am an Owner
     When I request an invitation with valid user data
-    Then I should see a message "Thank You"
+    Then I should see a message "Obrigado!"
     And my email address should be stored in the database
     And my stored user type should be "Owner"
     And my account should be unconfirmed
@@ -40,7 +40,7 @@ Feature: Request Invitation
   Scenario: Vet signs up with valid data
     Given I am a Vet
     When I request an invitation with valid user data
-    Then I should see a message "Thank You"
+    Then I should see a message "Obrigado!"
     And my email address should be stored in the database
     And my stored user type should be "Vet"
     And my account should be unconfirmed
