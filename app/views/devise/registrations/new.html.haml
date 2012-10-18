@@ -3,12 +3,12 @@
     .modal-header
       %a.close{"data-dismiss" => "modal"} ×
       %h3#modal-title
-        Cadastro de 
+        Cadastro
         %span#modal-title-user-type
           - if @user.type == 'Vet'
-            Veterinário
+            de Veterinário
           - else
-            Proprietário
+            de Proprietário
     .modal-body
       = f.error_notification
       = f.input :email, :placeholder => "email@exemplo.com.br", :autocapitalize => "off", :autocorrect => "off"
