@@ -14,14 +14,14 @@
       %a.twitter-share-button{"data-count" => "horizontal", "data-text" => "Quer o melhor atendimento veterinário na sua casa?", "data-url" => "http://www.petcuida.com.br/", "data-via" => "PetCuida", "data-lang" => "pt", :href => "https://twitter.com/share"}
 
     %span{:style => "display:inline-block; vertical-align:text-bottom;"}
-      .fb-like{"data-href" => "http://www.petcuida.com.br/", "data-layout" => "button_count", "data-send" => "false", "data-show-faces" => "false", "data-width" => "90"}
+      .fb-like{ data: { href: "http://www.petcuida.com.br", send: "false", layout: "button_count", width: "120", "show-faces" => "false" }}
       
     #gplus{:style => "display:inline-block; margin: 0px 40px;"}
-      .g-plusone{"data-annotation" => "inline", "data-href" => "http://www.petcuida.com.br/", "data-size" => "medium", "data-width" => "120"}
+      .g-plusone{ data: { size: "medium", href: "http://www.petcuida.com.br/" }}
 
     %br/
     
     #conversion-tracking
-      -#%noscript
-      -#  %div{:style => "display:inline;"}
-      -#    %img{:alt => "", :height => "1", :src => "http://www.googleadservices.com/pagead/conversion/1002155659/?value=0&amp;label=gcITCOWo1gMQi93u3QM&amp;guid=ON&amp;script=0", :style => "border-style:none;", :width => "1"}/
+      %noscript
+        %div{:style => "display:inline;"}
+          %img{:alt => "", :height => "1", :src => "http://www.googleadservices.com/pagead/conversion/1002155659/?value=0&label=gcITCOWo1gMQi93u3QM&guid=ON&script=0", :style => "border-style:none;", :width => "1"}/
