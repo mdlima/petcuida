@@ -1,0 +1,50 @@
+.hero-unit
+  %h3 Obrigado!
+
+  %p O seu cadastro foi realizado e você será o primeiro a receber as novidades sobre a Pet Cuida. Enviaremos um email de confirmação, que você deverá receber em breve.
+  %p Qualquer dúvida, sugestão ou para falar o que quiser com a gente é só mandar um email para #{ mail_to 'petcuida@petcuida.com.br'}.
+  %p Compartilhe com os seus amigos a sua descoberta e nos ajude na missão de criar o melhor atendimento veterinário!
+  %br/
+
+  #tweet{:style => "display:inline-block;"}
+    %a.twitter-share-button{ href: "https://twitter.com/share", class: "twitter-share-button", data: { via: "PetCuida", lang: "pt" }} Tweetar
+    :javascript
+      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+
+  %span{:style => "display:inline-block; vertical-align:text-bottom;"}
+    #fb-root
+    :javascript
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    .fb-like{ data: { href: "http://www.petcuida.com.br", send: "false", layout: "button_count", width: "120", "show-faces" => "false" }}
+
+  #gplus{:style => "display:inline-block; margin: 0px 40px;"}
+    .g-plusone{ data: { size: "medium", href: "http://www.petcuida.com.br/" }}
+    :javascript
+      window.___gcfg = {lang: 'pt-BR'};
+
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+
+  %br/
+  #conversion-tracking
+    / Google Code for Cadastro PetCuida Conversion Page
+    :javascript
+      var google_conversion_id = 1002155659;
+      var google_conversion_language = "pt";
+      var google_conversion_format = "3";
+      var google_conversion_color = "ffffff";
+      var google_conversion_label = "gcITCOWo1gMQi93u3QM";
+      var google_conversion_value = 0;
+    %script{:src => "http://www.googleadservices.com/pagead/conversion.js", :type => "text/javascript"}
+    %noscript
+      %div{:style => "display:inline;"}
+        %img{:alt => "", :height => "1", :src => "http://www.googleadservices.com/pagead/conversion/1002155659/?value=0&label=gcITCOWo1gMQi93u3QM&guid=ON&script=0", :style => "border-style:none;", :width => "1"}/
