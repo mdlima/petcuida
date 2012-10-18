@@ -19,16 +19,19 @@ class RegistrationsController < Devise::RegistrationsController
       render :action => :new, :layout => !request.xhr?
     end
   end
+  
+  def thanks
+  end
 
   protected
 
   def after_inactive_sign_up_path_for(resource)
-    '/thankyou.html'
+    thanks_path
   end
 
   def after_sign_up_path_for(resource)
     # the page new users will see after sign up (after launch, when no invitation is needed)
-    redirect_to root_path
+    root_path
   end
 
 end
