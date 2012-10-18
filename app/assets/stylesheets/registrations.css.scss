@@ -1,24 +1,8 @@
 .hero-registration {
-/*  background-image: image-url("hero-stethoscope-heart.png");*/
-  background-position: 100% 10%;
-  background-repeat: no-repeat;
-/*  padding-right: 380px;*/
   
-  p {  }
-  
-  button { margin: 0px 20px; }
-
-  #btn-owner {
-    position: relative;
-    z-index: 1;
-    float: left;
+  button {
     width: 200px;
+    margin: 0 auto;
   }
 
-  #btn-vet {
-    position: relative;
-    z-index: 1;
-    float: right;
-    width: 200px;
-  }
 }
