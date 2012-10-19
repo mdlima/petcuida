@@ -5,8 +5,8 @@ $(document).ready ->
     email  = $('form #user_email').val()
     opt_in = $('form #user_opt_in').val()
     userType   = $('form #user_type').val()
-    dataString = 'user[email]='+ email + '&user[opt_in]=' + opt_in + '&user[type]=' + userType
-  
+    # dataString = 'user[email]='+ email + '&user[opt_in]=' + opt_in + '&user[type]=' + userType
+    dataString = $("#new_user").serialize()
     $.ajax(
       type: "POST"
       url: "/users"
