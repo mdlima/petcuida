@@ -7,12 +7,18 @@ class RegistrationsController < Devise::RegistrationsController
     if resource.save
       if resource.active_for_authentication?
         sign_in(resource_name, resource)
-        (render(:partial => 'thankyou', :layout => false) && return)  if request.xhr?
-        respond_with resource, :location => after_sign_up_path_for(resource)
+        if request.xhr?
+          render :js => "window.location = '#{after_sign_up_path_for(resource)}'"
+        else
+          respond_with resource, :location => after_sign_up_path_for(resource)
+        end
       else
         expire_session_data_after_sign_in!
-        (render(:partial => 'thankyou', :layout => false) && return)  if request.xhr?
-        respond_with resource, :location => after_inactive_sign_up_path_for(resource)
+        if request.xhr?
+          render :js => "window.location = '#{after_inactive_sign_up_path_for(resource)}'"
+        else
+          respond_with resource, :location => after_inactive_sign_up_path_for(resource)
+        end
       end
     else
       clean_up_passwords resource
