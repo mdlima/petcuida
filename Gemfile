@@ -49,7 +49,6 @@ end
 group :test do
   if !(RUBY_PLATFORM.include? "linux")
     gem 'rb-fsevent', '0.9.1', :require => false
-    gem 'growl', '1.0.3' # Replaced by terminal-notifier-guard
     gem 'terminal-notifier-guard', '1.5.3' # Notifications on Mac OS X Mountain Lion Notification Center
   end
 
