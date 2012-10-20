@@ -24,3 +24,22 @@ pt-BR:
     #   username: 'User name to sign in.'
     #   password: 'No special characters, please.'
 
+    labels:
+      defaults:
+        name: 'Nome'
+        password: 'Senha'
+        email: 'Email'
+        opt_in: 'Opt-in'
+        last_name: 'Sobrenome'
+        phone: 'Telefone'
+        zip_code: 'CEP'
+    # hints:
+    #   defaults:
+    #     email: 'seunome@exemplo.com.br'
+    #     phone: '11-99999-9999'
+    #     zip_code: '00000-000'
+    placeholders:
+      defaults:
+        email: 'seunome@exemplo.com.br'
+        phone: '11-99999-9999'
+        zip_code: '00000-000'

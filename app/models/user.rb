@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :opt_in, :type
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :opt_in, :type, :last_name, :phone, :zip_code
   
   after_create :add_user_to_mailchimp unless Rails.env.test?
   before_destroy :remove_user_from_mailchimp unless Rails.env.test?
@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   # override Devise method
   # no password is required when the account is created; validate password when the user sets one
   validates_confirmation_of :password
+  validates_presence_of :email
   def password_required?
     if !persisted?
       !(password != "")

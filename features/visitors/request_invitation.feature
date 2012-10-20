@@ -36,6 +36,10 @@ Feature: Request Invitation
     When I visit the home page
     And I click a button "Sou Veterinário"
     Then I should see a form with a field "Email"
+    And I should see a form with a field "Nome"
+    And I should see a form with a field "Sobrenome"
+    And I should see a form with a field "Telefone"
+    And I should see a form with a field "CEP"
 
   Scenario: Vet signs up with valid data
     Given I am a Vet
