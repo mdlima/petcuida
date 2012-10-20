@@ -31,36 +31,28 @@ group :assets do
 end
 
 group :development, :test do
-  # gem     'sqlite3', '1.3.6'
   gem    'rspec-rails', '2.11.0'
   gem    'guard-rspec', '1.2.1'
   gem 'guard-cucumber', '1.2.0'
   gem    'guard-spork', '1.2.0'
   gem          'spork', '0.9.2'
 
-  if !(RUBY_PLATFORM.include? "linux")
-    gem    'capybara-webkit', '0.12.1'
-  end
+  gem    'capybara-webkit', '0.12.1', :group => :darwin
 
   gem 'factory_girl_rails', '4.1.0'
   gem      'letter_opener', '1.0.0'
 end
 
 group :test do
-  if !(RUBY_PLATFORM.include? "linux")
-    gem 'rb-fsevent', '0.9.1', :require => false
-    gem 'terminal-notifier-guard', '1.5.3' # Notifications on Mac OS X Mountain Lion Notification Center
-  end
-
   gem          'launchy', '2.1.2'
   gem         'capybara', '1.1.2'
   gem       'email_spec', '1.2.1'
   gem   'cucumber-rails', '1.3.0', :require => false
   gem 'database_cleaner', '0.8.0'
 
-  if (RUBY_PLATFORM.include? "linux")
-    gem 'minitest'
-  end
+  gem 'rb-fsevent', '0.9.1', :require => false, :group => :darwin
+  gem 'terminal-notifier-guard', '1.5.3', :group => :darwin # Notifications on Mac OS X Mountain Lion Notification Center
+  gem 'minitest', :group => :linux
 end
 
 group :production do
