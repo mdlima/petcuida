@@ -37,8 +37,6 @@ group :development, :test do
   gem    'guard-spork', '1.2.0'
   gem          'spork', '0.9.2'
 
-  gem    'capybara-webkit', '0.12.1', :group => :darwin
-
   gem 'factory_girl_rails', '4.1.0'
   gem      'letter_opener', '1.0.0'
 end
@@ -50,10 +48,15 @@ group :test do
   gem   'cucumber-rails', '1.3.0', :require => false
   gem 'database_cleaner', '0.8.0'
 
-  gem 'rb-fsevent', '0.9.1', :require => false, :group => :darwin
-  gem 'terminal-notifier-guard', '1.5.3', :group => :darwin # Notifications on Mac OS X Mountain Lion Notification Center
-  gem 'minitest', :group => :linux
 end
+
+group :darwin do
+  gem  'capybara-webkit', '0.12.1'
+  gem 'rb-fsevent', '0.9.1', :require => false
+  gem 'terminal-notifier-guard', '1.5.3' # Notifications on Mac OS X Mountain Lion Notification Center
+end
+
+gem 'minitest', :group => :linux
 
 group :production do
   gem 'newrelic_rpm'
