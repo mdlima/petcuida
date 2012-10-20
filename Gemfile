@@ -38,21 +38,30 @@ group :development, :test do
   gem    'guard-spork', '1.2.0'
   gem          'spork', '0.9.2'
 
-  gem    'capybara-webkit', '0.12.1'
+  if !(RUBY_PLATFORM.include? "linux")
+    gem    'capybara-webkit', '0.12.1'
+  end
+
   gem 'factory_girl_rails', '4.1.0'
   gem      'letter_opener', '1.0.0'
 end
 
 group :test do
-  gem 'rb-fsevent', '0.9.1', :require => false
-  # gem 'growl', '1.0.3' # Replaced by terminal-notifier-guard
-  gem 'terminal-notifier-guard', '1.5.3' # Notifications on Mac OS X Mountain Lion Notification Center
+  if !(RUBY_PLATFORM.include? "linux")
+    gem 'rb-fsevent', '0.9.1', :require => false
+    gem 'growl', '1.0.3' # Replaced by terminal-notifier-guard
+    gem 'terminal-notifier-guard', '1.5.3' # Notifications on Mac OS X Mountain Lion Notification Center
+  end
 
   gem          'launchy', '2.1.2'
   gem         'capybara', '1.1.2'
   gem       'email_spec', '1.2.1'
   gem   'cucumber-rails', '1.3.0', :require => false
   gem 'database_cleaner', '0.8.0'
+
+  if (RUBY_PLATFORM.include? "linux")
+    gem 'minitest'
+  end
 end
 
 group :production do
