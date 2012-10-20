@@ -4,7 +4,7 @@ describe User do
   
   before(:each) do
     @attr = { 
-      :name => "Example User",
+      :name => "Example",
       :email => "user@example.com",
       :password => "foobar",
       :password_confirmation => "foobar"
@@ -98,6 +98,51 @@ describe User do
       @user.encrypted_password.should_not be_blank
     end
 
+  end
+  
+  
+  describe "opt in" do
+    
+    before(:each) do
+      @user = User.create!(@attr)
+    end
+    
+    subject { @user }
+    
+    it { should respond_to(:opt_in) }
+    
+    it { should respond_to(:opt_in) }
+    
+    it "should have a valid ip address for opt_in_ip"
+    
+    
+  end
+  
+  describe "extended sign up attributes" do
+    
+    before(:each) do
+      @extended_attr = {
+        last_name: "Last Name",
+        phone: "11-1212-2313",
+        zip_code: "12345-000"
+      }
+      
+      @extended_attr.merge!(@attr)
+      @user = User.create!(@extended_attr)
+    end
+    
+    subject { @user }
+    
+    it { should respond_to(:last_name) }
+
+    it { should respond_to(:phone) }
+    
+    it "should validate phone format"
+
+    it { should respond_to(:zip_code) }
+    
+    it "should validate zip code format"
+    
   end
 
 end
