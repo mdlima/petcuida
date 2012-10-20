@@ -1,6 +1,12 @@
 source 'https://rubygems.org'
 ruby '1.9.3' # specify ruby version, needed by Heroku.
 
+# hack to make heroku cedar not install special groups
+def hg(g)
+  (ENV['HOME'].gsub('/','') == 'app' ? 'test' : g)
+end
+
+
 gem 'rails', '3.2.8'
 
 gem 'jquery-rails', '2.1.3'
@@ -47,16 +53,17 @@ group :test do
   gem       'email_spec', '1.2.1'
   gem   'cucumber-rails', '1.3.0', :require => false
   gem 'database_cleaner', '0.8.0'
-
 end
 
-group :darwin do
+group hg(:darwin) do
   gem  'capybara-webkit', '0.12.1'
   gem 'rb-fsevent', '0.9.1', :require => false
   gem 'terminal-notifier-guard', '1.5.3' # Notifications on Mac OS X Mountain Lion Notification Center
 end
 
-gem 'minitest', :group => :linux
+group hg(:linux) do
+  gem 'minitest'
+end
 
 group :production do
   gem 'newrelic_rpm'
