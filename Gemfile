@@ -25,8 +25,8 @@ gem 'google_visualr', '2.1.3'
 gem 'jquery-datatables-rails', '1.11.1'
 
 # Recommended for Heroku deployment
-# 'thin', '1.5.0'
-gem 'unicorn', '4.4.0'
+gem 'thin', '1.5.0'
+# gem 'unicorn', '4.4.0'
 gem 'pg', '0.14.1'
 
 # Gems used only for assets and not required
@@ -57,7 +57,7 @@ group :test do
 end
 
 group hg(:darwin) do
-  gem  'capybara-webkit', '0.12.1'
+  gem 'capybara-webkit', '0.12.1'
   gem 'rb-fsevent', '0.9.1', :require => false
   gem 'terminal-notifier-guard', '1.5.3' # Notifications on Mac OS X Mountain Lion Notification Center
 end
