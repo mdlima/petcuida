@@ -58,9 +58,17 @@ class User < ActiveRecord::Base
   def add_user_to_mailchimp
     unless self.email.include?('@test.com') # or !self.opt_in?
       mailchimp = Hominid::API.new(ENV["MAILCHIMP_API_KEY"])
-      info = { "SOURCE" => "website", "USER_TYPE" => self.type, "TYPE_ID" => (self.type == "Owner") ? 1 : 2 }
-      info["OPTIN_IP"] = self.opt_in_ip if self.opt_in_ip
       list_id = Rails.env.production? ? "8b1d8c9a12" : "4368979616" # mailchimp.find_list_id_by_name "Pet Cuida - Lançamento"
+      info = { 
+        "SOURCE" => "website", 
+        "USER_TYPE" => self.type, 
+        "TYPE_ID" => (self.type == "Owner") ? 1 : 2,
+        "OPTIN_IP" => self.opt_in_ip
+      }
+      info["FNAME"]    = self.name      if self.name
+      info["LNAME"]    = self.last_name if self.last_name
+      info["PHONE"]    = self.phone     if self.phone
+      info["ZIP_CODE"] = self.zip_code  if self.zip_code
       result = mailchimp.list_subscribe(list_id, self.email, info, 'html', false, true, false, false)
       Rails.logger.info("MAILCHIMP SUBSCRIBE: result #{result.inspect} for #{self.inspect}")
     end
