@@ -25,8 +25,9 @@ gem 'google_visualr', '2.1.3'
 gem 'jquery-datatables-rails', '1.11.1'
 
 # Recommended for Heroku deployment
-gem 'thin'
-gem 'pg'
+# 'thin', '1.5.0'
+gem 'unicorn', '4.4.0'
+gem 'pg', '0.14.1'
 
 # Gems used only for assets and not required
 # in production environments by default.
