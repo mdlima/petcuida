@@ -3,34 +3,39 @@
 class User < ActiveRecord::Base
   rolify
   # Include default devise modules. Others available are:
-  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
+  # :token_authenticatable, :encryptable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :opt_in, :type, :last_name, :phone, :zip_code
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, 
+                  :opt_in, :type, :last_name, :phone, :zip_code
   
   after_create :add_user_to_mailchimp unless Rails.env.test?
   before_destroy :remove_user_from_mailchimp unless Rails.env.test?
 
-  # override Devise method
-  # no password is required when the account is created; validate password when the user sets one
   validates_confirmation_of :password
   validates_presence_of :email
+  
+  # override Devise method
+  # no password is required when the account is created; validate password when the user sets one
   def password_required?
-    if !persisted?
-      !(password != "")
+    if persisted?
+      return (!password.nil? || !password_confirmation.nil?)
     else
-      !password.nil? || !password_confirmation.nil?
+      return (password == "")
     end
   end
   
   # override Devise method
+  # User confirmation will be delayed until site launch
   def confirmation_required?
     false
   end
   
   # override Devise method
+  # Since we disabled user confirmation, we need to make them inactive too
+  # or else they would be able to login to the site without e-mail confirmation.
   def active_for_authentication?
     confirmed? || confirmation_period_valid?
   end
