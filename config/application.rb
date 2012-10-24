@@ -80,7 +80,7 @@ module Petcuida
     config.assets.initialize_on_precompile = false
     
     # Set up logging to work using Unicorn as web server
-    config.logger = Logger.new(STDOUT)
+    config.logger = Logger.new(STDOUT) unless Rails.env.test?
     
   end
 end
