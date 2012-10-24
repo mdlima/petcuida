@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'spork'
+require 'capybara-webkit'
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
 
@@ -23,7 +24,7 @@ Spork.prefork do
   Capybara.default_selector = :css
   
   # Uses Webkit driver for javascript features in place of Selenium driver, which requires FireFox
-  Capybara.javascript_driver = :webkit
+  Capybara.javascript_driver = :webkit if Capybara.drivers.has_key? :webkit
 
   # By default, any exception happening in your Rails application will bubble up
   # to Cucumber so that your scenario will fail. This is a different from how 
