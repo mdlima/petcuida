@@ -11,13 +11,19 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, 
                   :opt_in, :type, :last_name, :phone, :zip_code
   
-  after_create :add_user_to_mailchimp unless Rails.env.test?
-  before_destroy :remove_user_from_mailchimp unless Rails.env.test?
-
   validates_confirmation_of :password
   validates_presence_of :email
+  validates :phone,    :format => { with: /^\(?0?(\d{2})\)?[\s-]?(\d{4,5})[- ]*(\d{4})$/ }, :allow_blank => true
+  validates :zip_code, :format => { with: /^\d{5}[\s-]?\d{3}$/ }, :allow_blank => true
+  
+  
+  after_create :add_user_to_mailchimp unless Rails.env.test?
+  before_destroy :remove_user_from_mailchimp unless Rails.env.test?
   
   after_create :send_welcome_email unless Rails.env.test?
+  
+  before_save :format_fields
+  
   
   # override Devise method
   # no password is required when the account is created; validate password when the user sets one
@@ -61,6 +67,21 @@ class User < ActiveRecord::Base
   end
     
   private
+  
+  def format_fields
+    unless self.phone.blank?
+      phone_parts = self.phone.gsub(/\D/,'').match(/0?(\d{2})?(\d{4,5})(\d{4})/)
+      # => #<MatchData "11999991234" 1:"11" 2:"99999" 3:"1234">
+      self.phone = "0#{phone_parts[1]}-#{phone_parts[2]}-#{phone_parts[3]}"
+    end
+    
+    unless self.zip_code.blank?
+      zip_parts = self.zip_code.gsub(/\D/,'').match(/(\d{5})(\d{3})/)
+      # => #<MatchData "12345012" 1:"12345" 2:"012">
+      self.zip_code = "#{zip_parts[1]}-#{zip_parts[2]}"
+    end
+    
+  end
 
   def add_user_to_mailchimp
     unless self.email.include?('@test.com') # or !self.opt_in?

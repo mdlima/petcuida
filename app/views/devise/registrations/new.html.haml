@@ -14,8 +14,8 @@
       = f.input :email, :autocapitalize => "off", :autocorrect => "off"
       = f.input :name, :autocorrect => "off"
       = f.input :last_name, :autocorrect => "off"
-      = f.input :phone, :autocapitalize => "off", :autocorrect => "off"
-      = f.input :zip_code, :autocapitalize => "off", :autocorrect => "off"
+      = f.input :phone, :maxlength => 16
+      = f.input :zip_code, :maxlength => 9
       = f.input :opt_in, :as => :hidden, :input_html => { :value => "true" }
       = f.input :type, :as => :hidden
       %small * Campos obrigatórios.
