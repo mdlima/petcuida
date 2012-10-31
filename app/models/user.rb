@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 class User < ActiveRecord::Base
+
   rolify
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :lockable, :timeoutable and :omniauthable
@@ -65,8 +66,30 @@ class User < ActiveRecord::Base
   def only_if_unconfirmed
     pending_any_confirmation {yield}
   end
+  
+  def name= (nm)
+    write_attribute(:name, format_name(nm))
+  end
+  
+  def last_name= (nm)
+    write_attribute(:last_name, format_name(nm))
+  end
+  
     
   private
+
+  NAME_CAPS_EXCEPTIONS = %w[da das de des di dis do dos du dus e]
+
+  def format_name (nm)
+    nm.downcase.split(' ').map do |part|
+      unless NAME_CAPS_EXCEPTIONS.include? (part)
+        part.capitalize
+        part.split('-').map {|p| p.capitalize}.join('-')
+      else
+        part
+      end
+    end.join(' ')
+  end
   
   def format_fields
     unless self.phone.blank?

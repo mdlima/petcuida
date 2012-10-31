@@ -179,6 +179,28 @@ describe User do
       
     end
     
+    describe "formatting names" do
+      
+      before(:each) do
+        @unformatted_names = ['test de lowercase', 'TEST DA CAPS', 'tEST E TEST', 'test de-hifen']
+        @formatted_names   = ['Test de Lowercase', 'Test da Caps', 'Test e Test', 'Test De-Hifen']
+      end
+      
+      it "should format the name" do
+        @unformatted_names.each do |user_name|
+          @user.name = user_name
+          @formatted_names.include?(@user.name).should be_true
+        end
+      end
+      
+      it "should format the last name" do
+        @unformatted_names.each do |user_name|
+          @user.last_name = user_name
+          @formatted_names.include?(@user.last_name).should be_true
+        end
+      end      
+    end
+    
   end
 
 end
