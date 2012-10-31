@@ -25,6 +25,8 @@ gem       'mandrill', :git => 'git://github.com/cyu/mandrill.git', :ref => 'ff39
 
 gem 'jquery-datatables-rails', '1.11.1'
 
+gem 'roboto', '0.1.0'
+
 # Recommended for Heroku deployment
 # gem 'thin', '1.5.0'
 gem 'unicorn', '4.4.0'
