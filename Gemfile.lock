@@ -1,6 +1,7 @@
 GIT
   remote: git://github.com/cyu/mandrill.git
   revision: ff39daa93ea0c1240274527bac3ab983b45a3c38
+  ref: ff39daa93ea0c1240274527bac3ab983b45a3c38
   specs:
     mandrill (0.0.1)
       httpi
