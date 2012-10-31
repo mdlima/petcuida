@@ -39,28 +39,30 @@ group :assets do
 end
 
 group :development, :test do
-  gem    'rspec-rails', '2.11.0'
-  gem    'guard-rspec', '1.2.1'
-  gem 'guard-cucumber', '1.2.0'
-  gem    'guard-spork', '1.2.0'
-  gem          'spork', '0.9.2'
-
-  gem 'factory_girl_rails', '4.1.0'
-  gem      'letter_opener', '1.0.0'
+  gem 'rspec-rails'
+  gem 'guard-rspec'
+  gem 'guard-cucumber'
+  gem 'guard-spork'
+  gem 'guard-bundler'
+  gem 'spork'
+  gem 'rb-readline' # Required to solve Guard Interactor hanging
+  gem 'factory_girl_rails'
+  gem 'letter_opener'
 end
 
 group :test do
-  gem          'launchy', '2.1.2'
-  gem         'capybara', '1.1.2'
-  gem       'email_spec', '1.2.1'
-  gem   'cucumber-rails', '1.3.0', :require => false
-  gem 'database_cleaner', '0.8.0'
+  gem 'launchy'
+  gem 'capybara'
+  gem 'email_spec'
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
 end
 
 group hg(:darwin) do
-  gem 'capybara-webkit', '0.12.1'
-  gem 'rb-fsevent', '0.9.1', :require => false
-  gem 'terminal-notifier-guard', '1.5.3' # Notifications on Mac OS X Mountain Lion Notification Center
+  gem 'capybara-webkit'
+  gem 'rb-fsevent', :require => false
+  gem 'terminal-notifier-guard' # Notifications on Mac OS X Mountain Lion Notification Center
+  gem 'guard-pow' # Restarts pow server automatically after changes that require this
 end
 
 group hg(:linux) do
