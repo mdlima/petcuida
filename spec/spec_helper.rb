@@ -9,10 +9,14 @@ Spork.prefork do
   # need to restart spork for it take effect.
   
   ENV["RAILS_ENV"] ||= 'test'
-  require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
   require 'email_spec'
   require 'rspec/autorun'
+  require 'rails/application'
+  
+  Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
+
+  require File.expand_path("../../config/environment", __FILE__)
 
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
@@ -31,7 +35,7 @@ Spork.prefork do
     config.mock_with :rspec
 
     # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-    config.fixture_path = "#{::Rails.root}/spec/fixtures"
+    # config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
     # If you're not using ActiveRecord, or you'd prefer not to run each of your
     # examples within a transaction, remove the following line or assign false
@@ -65,5 +69,6 @@ end
 
 Spork.each_run do
   # This code will be run each time you run your specs.
-
+  FactoryGirl.reload
+  ActiveSupport::Dependencies.clear
 end
