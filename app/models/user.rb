@@ -81,6 +81,7 @@ class User < ActiveRecord::Base
   NAME_CAPS_EXCEPTIONS = %w[da das de des di dis do dos du dus e]
 
   def format_name (nm)
+    return nm if nm.blank?
     nm.downcase.split(' ').map do |part|
       unless NAME_CAPS_EXCEPTIONS.include? (part)
         part.capitalize
