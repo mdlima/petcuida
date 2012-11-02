@@ -82,14 +82,9 @@ class User < ActiveRecord::Base
 
   def format_name (nm)
     return nm if nm.blank?
-    nm.downcase.split(' ').map do |part|
-      unless NAME_CAPS_EXCEPTIONS.include? (part)
-        part.capitalize
-        part.split('-').map {|p| p.capitalize}.join('-')
-      else
-        part
-      end
-    end.join(' ')
+    nm.strip.squeeze(' ').split('-').map do |part|
+      part.nome_proprio
+    end.join('-')
   end
   
   def format_fields

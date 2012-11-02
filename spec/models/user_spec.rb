@@ -184,22 +184,29 @@ describe User do
     describe "formatting names" do
       
       before(:each) do
-        @unformatted_names = ['test de lowercase', 'TEST DA CAPS', 'tEST E TEST', 'test de-hifen', '', nil]
-        @formatted_names   = ['Test de Lowercase', 'Test da Caps', 'Test e Test', 'Test De-Hifen', '', nil]
+        @test_names = {
+          'Test de Lowercase' => 'test de lowercase',
+          'Test da Caps' => 'TEST DA CAPS',
+          'Test e Test' => 'tEST   E   TEST',
+          'Test De-Hifen' => 'test de-hifen',
+          'Acentuação Á É À' => 'ACENTUAÇÃO á é à',
+          '' => '',
+          # nil => nil
+        }
       end
       
       it "should format the name" do
-        @unformatted_names.each do |user_name|
-          @user.name = user_name
-          @formatted_names.include?(@user.name).should be_true
+        @test_names.each do |key, value|
+          @user.name = value
+          @user.name.should eq(key)
           @user.should be_valid
         end
       end
       
       it "should format the last name" do
-        @unformatted_names.each do |user_name|
-          @user.last_name = user_name
-          @formatted_names.include?(@user.last_name).should be_true
+        @test_names.each do |key, value|
+          @user.last_name = value
+          @user.last_name.should eq(key)
           @user.should be_valid
         end
       end
