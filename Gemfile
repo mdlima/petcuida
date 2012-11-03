@@ -19,14 +19,15 @@ gem         'devise', '2.1.2'
 gem         'cancan', '1.6.8'
 gem         'rolify', '3.2.0'
 gem    'simple_form', '2.0.3'
+gem         'roboto', '0.1.0'
 # gem 'google_visualr', '2.1.3'
+
 gem 'jquery-datatables-rails', '1.11.1'
+gem         'brazilian-rails', '3.3.0'
 
 # Mailchimp and Mandrill integrations
 gem 'hominid', '3.0.5'
 gem 'mandrill', :git => 'git://github.com/cyu/mandrill.git', :ref => 'ff39daa93ea0c1240274527bac3ab983b45a3c38'
-
-gem 'brazilian-rails', '3.3.0'
 
 # Recommended for Heroku deployment
 gem 'unicorn', '4.4.0'

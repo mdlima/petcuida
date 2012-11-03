@@ -1,5 +1,7 @@
 Petcuida::Application.routes.draw do
 
+  mount_roboto
+
   # authenticated :user do
   #   root :to => 'home#index'
   # end
