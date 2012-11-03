@@ -37,16 +37,24 @@
     <p>Tente voltar &agrave; p&aacute;gina inicial do site em <a href="http://www.petcuida.com.br">www.petcuida.com.br</a> e, caso continue com problemas, entre em contato conosco.</p>
     <br />
     <hr />
-    <script>
+    <script type="text/javascript">
       var GOOG_FIXURL_LANG = ('pt-BR').slice(0,2),GOOG_FIXURL_SITE = location.host;
     </script>
     <script src="http://linkhelp.clients.google.com/tbproxy/lh/wm/fixurl.js"></script>
-		<script>
-			var _gaq=[['_setAccount','UA-34887240-1'],['_trackPageview']];
-			(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-			g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-			s.parentNode.insertBefore(g,s)}(document,'script'));
-		</script>
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-34887240-1']);
+      _gaq.push(['_trackPageview']);
+      _gaq.push(['_trackEvent', 'Error', '404', 'page: ' + document.location.pathname + document.location.search + ' ref: ' + document.referrer ]);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
   </div>
 </body>
 </html>
