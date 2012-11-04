@@ -21,7 +21,7 @@ Petcuida::Application.configure do
   config.assets.digest = true
 
   # Set headers for static files
-  config.static_cache_control = "public, max-age=3600"
+  config.static_cache_control = "public, max-age=2592000"
 
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
