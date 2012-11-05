@@ -149,11 +149,20 @@ describe User do
       end
 
       describe "when phone format is valid" do
-        it "should be valid" do
-          phones = ['1199999999', '011999999999', '(85)9999-9999', '013-1234-1234', '(021)1234-1234', '(31)12345678', '011 99999 1111']
-          phones.each do |phone|
-            @user.phone = phone
+        it "should be valid and phone formatted" do
+          phones = {
+            '011-9999-9999'  => '1199999999',
+            '011-99999-9999' => '011999999999',
+            '085-9999-9999'  => '(85)9999-9999',
+            '013-1234-1234'  => '013-1234-1234',
+            '021-1234-1234'  => '(021)1234-1234',
+            '031-1234-5678'  => '(31)12345678',
+            '011-99999-1111' => '  00011 99999 1111  '}
+          phones.each do |phone, text|
+            @user.phone = text
             @user.should be_valid
+            @user.save.should be_true
+            @user.phone.should eq(phone)
           end
         end
       end
