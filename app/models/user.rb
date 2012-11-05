@@ -14,9 +14,11 @@ class User < ActiveRecord::Base
   
   validates_confirmation_of :password
   validates_presence_of :email
-  validates :phone,    :format => { with: /^\(?0?(\d{2})\)?[\s-]?(\d{4,5})[- ]*(\d{4})$/ }, :allow_blank => true
   validates :zip_code, :format => { with: /^\d{5}[\s-]?\d{3}$/ }, :allow_blank => true
-  
+  # validates :phone, 
+  #   :format => { with: /^\(?0?(\d{2})\)?[\s-]?(\d{4,5})[- ]*(\d{4})$/ }, 
+  #   :allow_blank => true
+  validate :phone_number_validation
   
   after_create :add_user_to_mailchimp unless Rails.env.test?
   before_destroy :remove_user_from_mailchimp unless Rails.env.test?
@@ -89,7 +91,7 @@ class User < ActiveRecord::Base
   
   def format_fields
     unless self.phone.blank?
-      phone_parts = self.phone.gsub(/\D/,'').match(/0?(\d{2})?(\d{4,5})(\d{4})/)
+      phone_parts = self.phone.gsub(/^[0\D]+|[\D]+/,'').match(/(\d{2})(\d{4,5})(\d{4})/)
       # => #<MatchData "11999991234" 1:"11" 2:"99999" 3:"1234">
       self.phone = "0#{phone_parts[1]}-#{phone_parts[2]}-#{phone_parts[3]}"
     end
@@ -99,7 +101,15 @@ class User < ActiveRecord::Base
       # => #<MatchData "12345012" 1:"12345" 2:"012">
       self.zip_code = "#{zip_parts[1]}-#{zip_parts[2]}"
     end
-    
+  end
+  
+  def phone_number_validation
+    unless self.phone.blank?
+      # Keeps just numbers with no leading zeroes
+      phone_number = self.phone.gsub(/^[0\D]+|[\D]+/,'')
+      errors.add(:phone,"é muito curto, lembre-se de colocar o DDD.") if phone_number.length < 10
+      errors.add(:phone,"é muito longo, utilize o formato 011-99999-9999.") if phone_number.length > 11
+    end
   end
 
   def add_user_to_mailchimp
