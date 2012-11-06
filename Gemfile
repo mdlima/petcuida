@@ -12,7 +12,7 @@ gem 'rails', '3.2.8'
 gem 'jquery-rails', '2.1.3'
 gem         'haml', '3.1.6'
 gem         'sass', '3.2.1'
-
+gem   'haml-rails', '0.3.5'
 
 gem 'bootstrap-sass', '2.1.0.0'
 gem         'devise', '2.1.2'
@@ -48,7 +48,6 @@ group :development, :test do
   gem 'guard-spork'
   gem 'guard-bundler'
   gem 'spork'
-  gem 'rb-readline' # Required to solve Guard Interactor hanging
   gem 'factory_girl_rails'
   gem 'letter_opener'
 end
