@@ -20,6 +20,9 @@ guard :spork, :rspec_env => { 'RAILS_ENV' => 'test' }, :cucumber_env => { 'RAILS
 end
 
 guard :rspec, :version => 2, :all_after_pass => false, :cli => "--drb" do
+  # Print out changed files
+  watch(%r{(.+)}) {|m| puts "Detected change in #{m[1]}"}
+  
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { "spec" }
@@ -47,6 +50,9 @@ guard :rspec, :version => 2, :all_after_pass => false, :cli => "--drb" do
   end
   watch(%r{^app/views/layouts/(.+)/}) { "spec/requests" }
   watch(%r{^app/views/shared/(.+)/})  { "spec/requests" }
+  
+  # Factories
+  watch(%r{^spec/factories/(.+)\.rb$})                { |m| "spec/models/#{m[1].singularize}_spec.rb" }
   
   # Capybara request specs
   watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/requests/#{m[1]}_spec.rb" }
