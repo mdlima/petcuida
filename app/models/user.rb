@@ -15,9 +15,6 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password
   validates_presence_of :email
   validates :zip_code, :format => { with: /^\d{5}[\s-]?\d{3}$/ }, :allow_blank => true
-  # validates :phone, 
-  #   :format => { with: /^\(?0?(\d{2})\)?[\s-]?(\d{4,5})[- ]*(\d{4})$/ }, 
-  #   :allow_blank => true
   validate :phone_number_validation
   
   after_create :add_user_to_mailchimp unless Rails.env.test?
