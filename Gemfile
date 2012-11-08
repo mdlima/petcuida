@@ -13,6 +13,7 @@ gem 'jquery-rails', '2.1.3'
 gem         'haml', '3.1.6'
 gem         'sass', '3.2.1'
 gem   'haml-rails', '0.3.5'
+gem    'rdiscount', '1.6.8'
 
 gem 'bootstrap-sass', '2.1.0.0'
 gem         'devise', '2.1.2'
