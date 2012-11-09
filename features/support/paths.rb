@@ -8,15 +8,30 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
 
-    when /the home\s?page/
+    when 'home'
       '/'
-
-    when /the sign up page/
-      '/users/sign_up'
-
-    when /the sign in page/
-      '/users/sign_in'
-
+      
+    when 'sign up'
+      '/owners/sign_up'
+      
+    when 'sign in'
+      '/owners/sign_in'
+      
+    when 'sign out'
+      '/owners/sign_out'
+      
+    when 'vets home'
+      '/vets/home'
+      
+    when 'vets sign up'
+      '/vets/sign_up'
+      
+    when 'vets sign in'
+      '/vets/sign_in'
+      
+    when 'vets sign out'
+      '/vets/sign_out'
+      
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
@@ -25,7 +40,7 @@ module NavigationHelpers
 
     else
       begin
-        page_name =~ /the (.*) page/
+        page_name =~ /(.*)/
         path_components = $1.split(/\s+/)
         self.send(path_components.push('path').join('_').to_sym)
       rescue Object => e

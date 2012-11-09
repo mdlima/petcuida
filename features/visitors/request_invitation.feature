@@ -8,19 +8,17 @@ Feature: Request Invitation
 
 ### Owner ###
   Scenario: Owner views home page
-    When I visit the home page
+    When I go to the home page
     Then I should see a button "Sou Proprietário"
 
 @javascript
   Scenario: Owner views invitation request form
-    When I visit the home page
+    When I go to the home page
     And I click a button "Sou Proprietário"
     Then I should see a form with a field "Email"
-    And my user type should be "Owner"
 
   Scenario: Owner signs up with valid data
-    Given I am an Owner
-    When I request an invitation with valid user data
+    When I request an invitation with valid owner data
     Then I should see a message "Obrigado!"
     And my email address should be stored in the database
     And my stored user type should be "Owner"
@@ -28,22 +26,22 @@ Feature: Request Invitation
 
 ### Vet ###
   Scenario: Vet views home page
-    When I visit the home page
-    Then I should see a button "Sou Veterinário"
+    When I go to the home page
+    And I click a link "Sou Veterinário"
+    Then I should see the vets page
 
-@javascript
   Scenario: Vet views invitation request form
-    When I visit the home page
-    And I click a button "Sou Veterinário"
+    When I go to the vets home page
+    And I click a button "Quero me cadastrar!"
     Then I should see a form with a field "Email"
     And I should see a form with a field "Nome"
     And I should see a form with a field "Sobrenome"
     And I should see a form with a field "Telefone"
     And I should see a form with a field "CEP"
+    And I should see a form with a field "Aceito receber emails"
 
   Scenario: Vet signs up with valid data
-    Given I am a Vet
-    When I request an invitation with valid user data
+    When I request an invitation with valid vet data
     Then I should see a message "Obrigado!"
     And my email address should be stored in the database
     And my stored user type should be "Vet"

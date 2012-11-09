@@ -2,6 +2,8 @@
 
 class User < ActiveRecord::Base
 
+  after_initialize :init
+  
   rolify
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :lockable, :timeoutable and :omniauthable
@@ -78,7 +80,11 @@ class User < ActiveRecord::Base
   private
 
   NAME_CAPS_EXCEPTIONS = %w[da das de des di dis do dos du dus e]
-
+  
+  def init
+    self.opt_in = true if (self.has_attribute? :opt_in) && self.opt_in.nil?
+  end
+  
   def format_name (nm)
     return nm if nm.blank?
     nm.strip.squeeze(' ').split('-').map do |part|

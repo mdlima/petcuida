@@ -33,6 +33,7 @@ pt-BR:
         last_name: 'Sobrenome'
         phone: 'Telefone'
         zip_code: 'CEP'
+        opt_in: 'Aceito receber emails.'
     # hints:
     #   defaults:
     #     email: 'seunome@exemplo.com.br'

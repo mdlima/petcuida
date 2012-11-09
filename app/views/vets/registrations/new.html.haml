@@ -1,0 +1,26 @@
+.hero-unit
+  = simple_form_for resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-horizontal' } do |f|
+
+    .row
+      .span12
+        %h3.center-text Cadastro de Veterinário
+          
+    .row
+      .span6.offset3
+        .form-body
+          = f.error_notification
+          = f.input :email, :autocapitalize => "off", :autocorrect => "off"
+          = f.input :name, :autocorrect => "off"
+          = f.input :last_name, :autocorrect => "off"
+          = f.input :phone, :maxlength => 16
+          = f.input :zip_code, :maxlength => 9
+          = f.input :opt_in, :as => :boolean, :wrapper => :checkbox, :label => false, :inline_label => true
+      
+    .row
+      .span6.offset3
+        .form-footer.center-text
+          %a.btn{:href => vets_home_path} Voltar
+          = f.submit "Cadastrar", :class => "btn btn-success"
+          %br/
+          %small * Campos obrigatórios.
+          

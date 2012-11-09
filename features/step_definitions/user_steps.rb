@@ -46,7 +46,7 @@ end
 
 ### GIVEN ###
 Given /^I am not logged in$/ do
-  visit '/users/sign_out'
+  visit path_to('sign out')
 end
 
 Given /^I am logged in$/ do

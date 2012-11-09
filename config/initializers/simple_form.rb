@@ -44,6 +44,16 @@ SimpleForm.setup do |config|
     b.use :hint,  :wrap_with => { :tag => :span, :class => :hint }
     b.use :error, :wrap_with => { :tag => :span, :class => :error }
   end
+  
+  config.wrappers :checkbox_inline, :tag => false do |b|
+    b.use :label_input
+  end
+  
+  config.wrappers :checkbox, :tag => 'div', :class => 'control-group', :error_class => 'error' do |b|
+    b.use :tag => 'div', :class => 'controls' do |ba|
+      ba.use :label_input
+    end
+  end
 
   # The default wrapper to be used by the FormBuilder.
   config.default_wrapper = :default
