@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
-ruby '1.9.3' # specify ruby version, needed by Heroku.
+ruby '1.9.3' # Specify ruby version, needed by Heroku.
 
-# hack to make heroku cedar not install special groups
+# Hack to make heroku cedar not install special groups
 def hg(g)
   (ENV['HOME'].gsub('/','') == 'app' ? 'test' : g)
 end
@@ -21,7 +21,6 @@ gem         'cancan', '1.6.8'
 gem         'rolify', '3.2.0'
 gem    'simple_form', '2.0.3'
 gem         'roboto', '0.1.0'
-# gem 'google_visualr', '2.1.3'
 
 gem 'jquery-datatables-rails', '1.11.1'
 gem         'brazilian-rails', '3.3.0'
@@ -62,11 +61,11 @@ group :test do
 end
 
 group hg(:darwin) do
-  gem 'capybara-webkit'
-  gem 'rb-fsevent', :require => false
-  gem 'terminal-notifier-guard' # Notifications on Mac OS X Mountain Lion Notification Center
-  gem 'guard-pow' # Restarts Pow server automatically after changes that require this
-  gem 'powder' # Synthatic sugar for Pow server
+  gem         'capybara-webkit', :require => false
+  gem              'rb-fsevent', :require => false # File system events monitor for Mac OS X
+  gem 'terminal-notifier-guard', :require => false # Notifications on Mac OS X Mountain Lion Notification Center
+  gem               'guard-pow', :require => false # Restarts Pow server automatically after changes that require this
+  gem                  'powder', :require => false # Syntatic sugar for Pow server
 end
 
 group hg(:linux) do
