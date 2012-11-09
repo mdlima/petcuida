@@ -65,7 +65,8 @@ group hg(:darwin) do
   gem 'capybara-webkit'
   gem 'rb-fsevent', :require => false
   gem 'terminal-notifier-guard' # Notifications on Mac OS X Mountain Lion Notification Center
-  gem 'guard-pow' # Restarts pow server automatically after changes that require this
+  gem 'guard-pow' # Restarts Pow server automatically after changes that require this
+  gem 'powder' # Synthatic sugar for Pow server
 end
 
 group hg(:linux) do
