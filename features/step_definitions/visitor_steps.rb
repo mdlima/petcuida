@@ -1,13 +1,13 @@
 # encoding: utf-8
 
 def new_user
-  user = {
+  @user = {
     'Email' => "example@example.com"
   }
 end
 
 def new_vet
-  user = {
+  @user = {
     'Nome' => 'Test Vet',
     'Email' =>'example@example.com',
     'Telefone' => '11999990000',
@@ -56,7 +56,7 @@ Then /^I should see the vets page$/ do
 end
 
 Then /^I should see a message "([^\"]*)"$/ do |arg1|
-  page.should have_content (arg1)
+  page.should have_content(arg1)
 end
 
 Then /^my email address should be stored in the database$/ do
