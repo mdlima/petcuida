@@ -7,6 +7,7 @@ describe Vet do
   subject { vet }
   
   it { should respond_to(:name) }
+  it { should respond_to(:last_name) }
   it { should respond_to(:email) }
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
@@ -69,6 +70,11 @@ describe Vet do
 
     describe "when name is not present" do
       before { vet.name = '' }
+      it { should_not be_valid }
+    end
+
+    describe "when last name is not present" do
+      before { vet.last_name = '' }
       it { should_not be_valid }
     end
 

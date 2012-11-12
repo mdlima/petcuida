@@ -2,6 +2,6 @@
 
 class Vet < User
 
-  validates_presence_of :name, :phone, :zip_code
+  validates_presence_of :name, :last_name, :phone, :zip_code
 
 end

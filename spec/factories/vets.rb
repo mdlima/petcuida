@@ -2,7 +2,8 @@
 
 FactoryGirl.define do
   factory :vet do
-    name 'Test Vet'
+    name 'Test'
+    last_name 'Vet'
     email 'example_vet@example.com'
     password 'please'
     password_confirmation 'please'
