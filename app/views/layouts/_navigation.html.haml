@@ -2,6 +2,10 @@
   %span.green Pet
   %span.yellow Cuida
 %ul.nav
+  %li
+    = link_to 'Home', root_path
+  %li
+    = link_to 'Veterinários', vets_home_path
 -#  - if user_signed_in?
 -#    %li
 -#      = link_to 'Logout', destroy_user_session_path, :method=>'delete'
