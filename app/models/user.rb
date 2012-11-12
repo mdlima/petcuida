@@ -19,8 +19,8 @@ class User < ActiveRecord::Base
   validates :zip_code, :format => { with: /^\d{5}[\s-]?\d{3}$/ }, :allow_blank => true
   validate :phone_number_validation
   
-  after_create :add_user_to_mailchimp unless Rails.env.test?
-  before_destroy :remove_user_from_mailchimp unless Rails.env.test?
+  after_create :add_user_to_email_list unless Rails.env.test?
+  before_destroy :remove_user_from_email_list unless Rails.env.test?
   
   after_create :send_welcome_email unless Rails.env.test?
   
@@ -76,6 +76,10 @@ class User < ActiveRecord::Base
     write_attribute(:last_name, format_name(nm))
   end
   
+  def to_s
+    "#{name} <#{email}>"
+  end
+  
     
   private
 
@@ -115,51 +119,16 @@ class User < ActiveRecord::Base
     end
   end
 
-  def add_user_to_mailchimp
-    unless email.include?('@test.com') # or !self.opt_in?
-      mailchimp = Hominid::API.new(ENV["MAILCHIMP_API_KEY"])
-      list_id = Rails.env.production? ? "8b1d8c9a12" : "4368979616" # mailchimp.find_list_id_by_name "Pet Cuida - Lançamento"
-      info = { "SOURCE" => "website",
-               "USER_TYPE" => type,
-               "TYPE_ID" => (type == "Vet") ? 2 : 1,
-               "OPTIN_IP" => opt_in_ip }
-               
-      info["FNAME"]    = name      if name
-      info["LNAME"]    = last_name if last_name
-      info["PHONE"]    = phone     if phone
-      info["ZIP_CODE"] = zip_code  if zip_code
-      result = mailchimp.list_subscribe(list_id, email, info, 'html', false, true, false, false)
-      Rails.logger.info "MAILCHIMP SUBSCRIBE: result #{result.inspect} for #{inspect}"
-    end
+  def add_user_to_email_list
+    EmailServiceProvider.new.add_user_to_list(self) unless email.include?('@test.com') or !opt_in?
   end
   
-  def remove_user_from_mailchimp
-    unless email.include?('@test.com')
-      mailchimp = Hominid::API.new(ENV["MAILCHIMP_API_KEY"])
-      list_id = Rails.env.production? ? "8b1d8c9a12" : "4368979616" # mailchimp.find_list_id_by_name "Pet Cuida - Lançamento"
-      result = mailchimp.list_unsubscribe(list_id, email, false, true, true)  
-      Rails.logger.info "MAILCHIMP UNSUBSCRIBE: result #{result.inspect} for #{email}"
-    end
+  def remove_user_from_email_list
+    EmailServiceProvider.new.remove_user_from_list(self) unless email.include?('@test.com')
   end
   
   def send_welcome_email
-    unless email.include?('@test.com')
-      mandrill = Mandrill::API.new(ENV["MANDRILL_API_KEY"])
-      result = mandrill.messages 'send-template', 
-                                { :template_name => "Pet Cuida - User Registration Welcome#{Rails.env.production? ? "" : " Dev"}", 
-                                  :template_content => [{ :name => "subject", :content => "Confirmação de Cadastro - Pet Cuida" }], 
-                                  :message => { :subject    => "Confirmação de Cadastro - Pet Cuida", 
-                                                :from_email => "atendimento@petcuida.com.br", 
-                                                :from_name  => "Pet Cuida", 
-                                                :to         => [{ :email => email, :name => name }], 
-                                                :headers    => { "X-MC-GoogleAnalytics" => "www.petcuida.com.br", "X-MC-Tags" => "user-registration-welcome" }, 
-                                                :global_merge_vars => [ { :name => "SUBJECT", :content => "Confirmação de Cadastro - Pet Cuida" }, 
-                                                                        { :name => "CURRENT_YEAR", :content => Date.today.year } ], 
-                                                :google_analytics_domains => ["www.petcuida.com.br"], 
-                                                :google_analytics_campaign => "welcome_email" }, 
-                                                :async => false }
-      Rails.logger.info "MANDRILL WELCOME EMAIL: result #{result.inspect} for #{email}"
-    end
+    TransactionalEmail.new.send_user_welcome_email(self) unless email.include?('@test.com')
   end
 
 end
