@@ -8,10 +8,11 @@ end
 
 def new_vet
   @user = {
-    'Nome' => 'Test Vet',
-    'Email' =>'example@example.com',
-    'Telefone' => '11999990000',
-    'CEP' =>'04100-000'
+    'Nome'      => 'Test',
+    'Sobrenome' => 'Vet',
+    'Email'     => 'example@example.com',
+    'Telefone'  => '11999990000',
+    'CEP'       => '04100-000'
   }
   
 end

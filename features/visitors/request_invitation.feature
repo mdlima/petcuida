@@ -9,12 +9,12 @@ Feature: Request Invitation
 ### Owner ###
   Scenario: Owner views home page
     When I go to the home page
-    Then I should see a button "Sou Proprietário"
+    Then I should see a button "Quero me cadastrar!"
 
 @javascript
   Scenario: Owner views invitation request form
     When I go to the home page
-    And I click a button "Sou Proprietário"
+    And I click a button "Quero me cadastrar!"
     Then I should see a form with a field "Email"
 
   Scenario: Owner signs up with valid data
