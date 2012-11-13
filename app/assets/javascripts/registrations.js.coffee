@@ -2,18 +2,13 @@
 $(document).ready ->
   # // use AJAX to submit the "request invitation" form
   $('#invitation_button').live 'click', ->
-    email  = $('form #user_email').val()
-    opt_in = $('form #user_opt_in').val()
-    userType   = $('form #user_type').val()
-    # dataString = 'user[email]='+ email + '&user[opt_in]=' + opt_in + '&user[type]=' + userType
-    dataString = $("#new_user").serialize()
+    dataString = $("#new_owner").serialize()
     $.ajax(
       type: "POST"
-      url: "/users"
+      url: "/owners"
       data: dataString
       success: (data) ->
         $('#request-invite').html(data)
-        setUserType(userType)
         loadSocial()
     )
     false
