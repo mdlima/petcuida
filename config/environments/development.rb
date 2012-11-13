@@ -50,4 +50,9 @@ Petcuida::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  
+  # Used to replicate production errors
+  # config.eager_load_paths += %W(#{config.root}/lib)
+  # config.threadsafe!
+  
 end
