@@ -70,8 +70,14 @@ Then /^my account should be unconfirmed$/ do
   test_user.confirmed_at.should be_nil
 end
 
-Then /^my stored user type should be "([^"]*)"/ do |user_type|
+Then /^my stored user type should be "([^"]*)"$/ do |user_type|
   test_user = User.find_by_email("example@example.com")
   test_user.type.should == user_type
 end
+
+Then /^my ip should be "([^"]*)"$/ do |user_ip|
+  test_user = User.find_by_email("example@example.com")
+  test_user.opt_in_ip.should == user_ip
+end
+
 

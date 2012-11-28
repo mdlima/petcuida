@@ -23,6 +23,7 @@ Feature: Request Invitation
     And my email address should be stored in the database
     And my stored user type should be "Owner"
     And my account should be unconfirmed
+    And my ip should be "127.0.0.1"
 
 ### Vet ###
   Scenario: Vet views home page
@@ -46,6 +47,7 @@ Feature: Request Invitation
     And my email address should be stored in the database
     And my stored user type should be "Vet"
     And my account should be unconfirmed
+    And my ip should be "127.0.0.1"
 
 ### For all user types ###
   Scenario: User signs up with invalid email

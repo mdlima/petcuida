@@ -3,7 +3,7 @@ class RegistrationsController < Devise::RegistrationsController
   # override #create to respond to AJAX with a partial
   def create
     build_resource
-    resource.opt_in_ip = request.remote_ip
+    resource.opt_in_ip = request.headers["HTTP_CF_CONNECTING_IP"] || request.remote_ip
     if resource.save
       if resource.active_for_authentication?
         sign_in(resource_name, resource)
