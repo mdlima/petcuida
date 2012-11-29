@@ -9,13 +9,14 @@ class EmailServiceProvider
     list_id = Rails.env.production? ? "8b1d8c9a12" : "4368979616" # mailchimp.find_list_id_by_name "Pet Cuida - Lançamento"
     info = { "SOURCE" => "website",
              "USER_TYPE" => user.type,
-             "TYPE_ID" => (user.type == "Vet") ? 2 : 1,
-             "OPTIN_IP" => user.opt_in_ip }
-               
+             "TYPE_ID" => (user.type == "Vet") ? 2 : 1 }
+             
+    info["OPTIN_IP"] = user.opt_in_ip if user.opt_in_ip
     info["FNAME"]    = user.name      if user.name
     info["LNAME"]    = user.last_name if user.last_name
     info["PHONE"]    = user.phone     if user.phone
     info["ZIP_CODE"] = user.zip_code  if user.zip_code
+    
     result = @email_provider.list_subscribe(list_id, user.email, info, 'html', false, true, false, false)
     Rails.logger.info "MAILCHIMP SUBSCRIBE: result #{result.inspect} for #{user}"
   end
