@@ -7,22 +7,22 @@ def hg(g)
 end
 
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.9'
 
-gem 'jquery-rails', '2.1.3'
-gem         'haml', '3.1.6'
-gem         'sass', '3.2.1'
+gem 'jquery-rails', '2.1.4'
+gem         'haml', '3.1.7'
+gem         'sass', '3.2.3'
 gem   'haml-rails', '0.3.5'
 gem    'rdiscount', '1.6.8'
 
-gem 'bootstrap-sass', '2.1.0.0'
+gem 'bootstrap-sass', '2.2.1.1'
 gem         'devise', '2.1.2'
 gem         'cancan', '1.6.8'
 gem         'rolify', '3.2.0'
-gem    'simple_form', '2.0.3'
+gem    'simple_form', '2.0.4'
 gem         'roboto', '0.1.0'
 
-gem 'jquery-datatables-rails', '1.11.1'
+gem 'jquery-datatables-rails', '1.11.2'
 gem         'brazilian-rails', '3.3.0'
 
 # Mailchimp and Mandrill integrations
@@ -30,7 +30,7 @@ gem 'hominid', '3.0.5'
 gem 'mandrill', :git => 'git://github.com/cyu/mandrill.git', :ref => 'ff39daa93ea0c1240274527bac3ab983b45a3c38'
 
 # Recommended for Heroku deployment
-gem 'unicorn', '4.4.0'
+gem 'unicorn', '4.5.0'
 gem      'pg', '0.14.1'
 
 # Gems used only for assets and not required
@@ -38,7 +38,7 @@ gem      'pg', '0.14.1'
 group :assets do
   gem   'sass-rails', '3.2.5'
   gem 'coffee-rails', '3.2.2'
-  gem     'uglifier', '1.2.3'
+  gem     'uglifier', '1.3.0'
 end
 
 group :development, :test do
@@ -51,7 +51,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'letter_opener'
   gem 'better_errors'
-  # gem 'binding_of_caller'
+  gem 'binding_of_caller'
 end
 
 group :test do
@@ -75,5 +75,5 @@ group hg(:linux) do
 end
 
 group :production do
-  gem 'newrelic_rpm'
+  gem 'newrelic_rpm', '3.5.3.25'
 end
